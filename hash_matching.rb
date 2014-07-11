@@ -54,6 +54,8 @@ Benchmark.bm(30) do |x|
 
   x.report("lookup with strings")   { iterations.times { names.each {|n| name_hash[n] } } }
   x.report("lookup with prehashed") { iterations.times { prehashed.each {|n| prehashed_hash[n]  }} }
+  x.report("lookup with prehashed.name") { iterations.times { prehashed.each {|n| prehashed_hash[n.name]  }} }
+  x.report("lookup with prehashed.map name") { iterations.times { prehashed.map(&:name).each {|n| prehashed_hash[n]  }} }
   x.report("lookup with structs")   { iterations.times { structs.each {|n| struct_hash[n]  }} }
   x.report("freeze cost x 100_000") { iterations.times { "abc::def".freeze  } }
 
