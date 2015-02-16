@@ -40,7 +40,29 @@ class FibException
   end
 end
 
+class FibBlockThrow
+  def dofib(n,&block)
+    if catch :bottom do
+        fib(n, &block)
+      end
+      # extra if, to level playing field - to know if catch was executed or not, then
+      # doing nothing just as for the exception raising example
+    end
+  end
+
+  def fib(n, &block)
+    case n
+    when 0, 1
+      block.call(n)
+    else
+      fib(n-1) + fib(n-2)
+    end
+  end
+end
+
 Benchmark.bm(30) do |x|
   x.report("long jump with throw") { iterations.times { FibException.new.dofib(5) } }
+  x.report("long jump with block throw") { iterations.times { FibException.new.dofib(5) {|n| throw(:bottom, :is_reached) } } }
+  x.report("long jump with block value") { iterations.times { FibException.new.dofib(5) {|n| n } }}
   x.report("long jump with exception") { iterations.times { FibError.new.dofib(5) } }
 end
