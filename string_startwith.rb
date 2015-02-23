@@ -12,4 +12,6 @@ Benchmark.bm(30) do |x|
   x.report("match each char") { iterations.times { data[0] == 'a' && data[1] == 'a' } }
   x.report("match substring") { iterations.times { data[0,2] == 'aa' } }
   x.report("match substring frozen") { iterations.times { data[0,2] == CONST } }
+  x.report("start_with?") { iterations.times { data.start_with?('aa') } }
+  x.report("start_with? frozen") { iterations.times { data.start_with?(CONST) } }
 end
