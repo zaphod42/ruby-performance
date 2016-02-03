@@ -61,13 +61,13 @@ end
 iterations = 10_000_000
 
 Benchmark.bm(30) do |x|
-  x.report("case1") { iterations.times {  SymbolCase.by_case_1(:sym3) } }
-  x.report("case1b") { iterations.times {  SymbolCase.by_case_1b(:sym3) } }
-  x.report("case2") { iterations.times { ::SymbolCase.by_case_2(:sym3) } }
-  x.report("find")   { iterations.times { ::SymbolCase.find(:sym3) } }
-  x.report("set")    { iterations.times { ::SymbolCase.set(:sym3) } }
-  x.report("hash")   { iterations.times { ::SymbolCase.hsh_val(:sym3) } }
-  x.report("hash frozen")   { iterations.times { ::SymbolCase.fhsh_val(:sym3) } }
-  x.report("hash include")   { iterations.times { ::SymbolCase.hsh_incl(:sym3) } }
-  x.report("array index")   { iterations.times { ::SymbolCase.index(:sym3) } }
+  x.report("case1")          { iterations.times { SymbolCase.by_case_1(:sym3) } }
+  x.report("case1b")         { iterations.times { SymbolCase.by_case_1b(:sym3) } }
+  x.report("case2")          { iterations.times { SymbolCase.by_case_2(:sym3) } }
+  x.report("find")           { iterations.times { SymbolCase.find(:sym3) } }
+  x.report("set")            { iterations.times { SymbolCase.set(:sym3) } }
+  x.report("hash")           { iterations.times { SymbolCase.hsh_val(:sym3) } }
+  x.report("hash frozen")    { iterations.times { SymbolCase.fhsh_val(:sym3) } }
+  x.report("hash include")   { iterations.times { SymbolCase.hsh_incl(:sym3) } }
+  x.report("array index")    { iterations.times { SymbolCase.index(:sym3) } }
 end
